@@ -1,4 +1,4 @@
-# Redrob Intelligent Candidate Discovery Engine
+ # Redrob Intelligent Candidate Discovery Engine
 
 An intelligent, production-grade, deterministic candidate ranking engine designed for the **India Runs / Redrob Data & AI Challenge**. 
 
