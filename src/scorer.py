@@ -70,17 +70,39 @@ def profile_score(features: CandidateFeatures, parsed_jd: ParsedJD) -> float:
     product_months = _clamp(features.product_company_months / 48.0)
     assessment = 0.55 if features.assessment_avg < 0 else _clamp(features.assessment_avg / 100.0)
     github = 0.45 if features.github_activity_score < 0 else _clamp(features.github_activity_score / 100.0)
+    
+    # Base education tier score
     edu = {"tier_1": 1.0, "tier_2": 0.78, "tier_3": 0.55, "tier_4": 0.35, "unknown": 0.35}.get(features.edu_tier, 0.35)
+    
+    # Enhance education score with field_of_study (Priority 2b)
+    STEM_FIELDS = {
+        "computer science", "computer engineering", "information technology",
+        "software engineering", "electronics", "electrical engineering",
+        "mathematics", "statistics", "data science",
+        "artificial intelligence", "machine learning", "information systems"
+    }
+    field_l = features.field_of_study.lower()
+    is_stem = any(stem in field_l for stem in STEM_FIELDS)
+    field_mult = 1.0 if is_stem else 0.7
+    edu_score = edu * field_mult
+
+    # Social/Network score (Priority 2d + 3a)
+    connections = min(features.connection_count / 500.0, 1.0)
+    endorsements = min(features.endorsements_received / 100.0, 1.0)
+    linkedin_trust = 1.0 if features.linkedin_connected else 0.5
+    social_score = 0.4 * connections + 0.4 * endorsements + 0.2 * linkedin_trust
 
     score = (
-        0.22 * title_score(features.current_title)
-        + 0.16 * experience_score(features.years_of_experience, parsed_jd)
-        + 0.22 * skill_strength
-        + 0.18 * production
-        + 0.12 * product_months
+        0.20 * title_score(features.current_title)
+        + 0.15 * experience_score(features.years_of_experience, parsed_jd)
+        + 0.20 * skill_strength
+        + 0.15 * production
+        + 0.10 * product_months
+        + 0.06 * features.company_size_score
         + 0.05 * assessment
         + 0.03 * github
-        + 0.02 * edu
+        + 0.03 * edu_score
+        + 0.03 * social_score
     )
 
     if features.is_consulting_only:
@@ -99,16 +121,31 @@ def availability_score(features: CandidateFeatures) -> float:
     completeness = _clamp(features.profile_completeness / 100.0)
     offer = 0.55 if features.offer_acceptance_rate < 0 else _clamp(features.offer_acceptance_rate)
 
+    # Priority 1a: Recruiter demand signal
+    recruiter_demand = min(features.saved_by_recruiters_30d / 10.0, 1.0)
+
+    # Priority 1b: Active seeker signal
+    apps = features.applications_submitted_30d
+    app_signal = 1.0 if 2 <= apps <= 15 else 0.6 if apps < 2 else 0.4
+
+    # Priority 2a: Visibility signal
+    views = min(features.profile_views_30d / 50.0, 1.0)
+    searches = min(features.search_appearance_30d / 150.0, 1.0)
+    visibility = 0.5 * views + 0.5 * searches
+
     return _clamp(
-        0.16 * (1.0 if features.open_to_work else 0.35)
-        + 0.22 * recency
-        + 0.22 * _clamp(features.recruiter_response_rate)
-        + 0.12 * notice
+        0.12 * (1.0 if features.open_to_work else 0.35)
+        + 0.18 * recency
+        + 0.18 * _clamp(features.recruiter_response_rate)
+        + 0.10 * notice
         + 0.08 * response_time
         + 0.08 * location
         + 0.06 * _clamp(features.interview_completion_rate)
         + 0.03 * offer
         + 0.03 * completeness
+        + 0.05 * recruiter_demand
+        + 0.04 * app_signal
+        + 0.05 * visibility
     )
 
 

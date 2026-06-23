@@ -50,6 +50,16 @@ class CandidateFeatures:
     applications_submitted_30d: int
     saved_by_recruiters_30d: int
     is_honeypot: bool
+    # New fields — Priority 1 & 2 enhancements
+    profile_views_30d: int
+    search_appearance_30d: int
+    connection_count: int
+    endorsements_received: int
+    linkedin_connected: bool
+    verified_email: bool
+    verified_phone: bool
+    field_of_study: str          # best STEM field from education entries
+    company_size_score: float    # avg product-company size fit score from career history
 
 
 @dataclass(frozen=True)

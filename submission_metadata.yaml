@@ -1,0 +1,44 @@
+# Redrob Hackathon — Submission Metadata
+team_name: "CandiRank"
+
+primary_contact:
+  name: "Vishal Dhawal"
+  email: "Vishaldhawal8853@gmail.com"
+  phone: "+91-XXXXXXXXXX"        # Please update with your phone number
+
+team_members:
+  - name: "Vishal Dhawal"
+    email: "Vishaldhawal8853@gmail.com"
+    role: "ML Engineer"
+
+github_repo: "https://github.com/Visshu78/CandiRank"
+sandbox_link: "http://localhost:8501" # Update this to your deployed Streamlit link (e.g. on Streamlit Share or HF Spaces)
+
+reproduce_command: "python rank.py --candidates \"data/[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl\" --out \"outputs/submission.csv\""
+
+compute:
+  platform: "Windows PC"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.14.0"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "Gemini"
+
+ai_usage_summary: |
+  Used Gemini via the Antigravity AI coding assistant to set up and verify the candidate ranking execution, check for honeypots, and test formatting rules.
+
+methodology_summary: |
+  A rule-based candidate ranker incorporating experience filters (5-9 years preferred), product-company duration scoring, title-matching, and a multiplicative penalty for consulting-only or inactive candidates. Uses an explicit honeypot detection utility to bypass traps. Tie-breaks are handled deterministically using signal counts and candidate IDs.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
