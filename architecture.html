@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligent Candidate Discovery — System Architecture</title>
+<style>
+  :root{
+    --bg: #0b0f14;
+    --panel: #11161d;
+    --panel-2: #161d26;
+    --line: #243140;
+    --ink: #e8edf2;
+    --ink-dim: #8b9bab;
+    --mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+
+    --c-data: #6ee7b7;     /* mint - data layer */
+    --c-nlp: #7dd3fc;      /* sky - understanding layer */
+    --c-embed: #a78bfa;    /* violet - embedding layer */
+    --c-score: #fb923c;    /* amber - scoring layer */
+    --c-rank: #f472b6;     /* pink - ranking/trust layer */
+    --c-out: #6ee7b7;      /* mint - output layer */
+    --c-bonus: #fbbf24;    /* gold - bonus layer */
+    --c-new: #34d399;      /* new-feature tag green */
+  }
+
+  * { box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    padding: 48px 24px 80px;
+    line-height: 1.5;
+  }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; }
+
+  header{
+    margin-bottom: 56px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 32px;
+  }
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c-score);
+    margin-bottom: 14px;
+  }
+  h1{
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .sub{
+    color: var(--ink-dim);
+    font-size: 15px;
+    max-width: 640px;
+  }
+
+  /* ===== PIPELINE ===== */
+  .pipeline{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stage{
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    position: relative;
+  }
+
+  .stage-rail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .stage-num{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--bg);
+    background: var(--stage-color);
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .stage-line{
+    width: 2px;
+    flex: 1;
+    background: var(--line);
+    margin-top: 6px;
+  }
+  .stage:last-child .stage-line{ display:none; }
+
+  .stage-content{ padding-bottom: 36px; }
+
+  .stage-label{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stage-color);
+    margin-bottom: 10px;
+    margin-top: 2px;
+  }
+
+  .card-row{
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
+
+  .card{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--stage-color);
+    border-radius: 10px;
+    padding: 14px 16px;
+    position: relative;
+  }
+  .card.new{
+    border-style: dashed;
+    border-left-style: solid;
+  }
+  .card-title{
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .card-desc{
+    font-size: 12px;
+    color: var(--ink-dim);
+    line-height: 1.45;
+  }
+  .new-tag{
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(52,211,153,0.15);
+    color: var(--c-new);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(52,211,153,0.35);
+  }
+
+  .weight-bar{
+    margin-top: 8px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .weight-fill{
+    height: 100%;
+    background: var(--stage-color);
+  }
+
+  /* ===== TECH STACK ===== */
+  .stack-section{
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .stack-title{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .stack-sub{
+    color: var(--ink-dim);
+    font-size: 13.5px;
+    margin-bottom: 28px;
+  }
+
+  .stack-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .stack-card{
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .stack-layer{
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-embed);
+    margin-bottom: 8px;
+  }
+  .stack-tool{
+    font-size: 14.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-family: var(--mono);
+  }
+  .stack-why{
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+
+  /* ===== LEGEND ===== */
+  .legend{
+    margin-top: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .legend-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+  .legend-dot{
+    width: 10px; height: 10px;
+    border-radius: 3px;
+  }
+
+  footer{
+    margin-top: 56px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-align: center;
+  }
+
+  @media (max-width: 600px){
+    .stage{ grid-template-columns: 40px 1fr; gap: 12px; }
+    .stage-num{ width: 24px; height: 24px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Track 01 — Data &amp; AI Challenge</div>
+    <h1>Intelligent Candidate Discovery</h1>
+    <p class="sub">Complete system architecture — original core pipeline plus every differentiator feature layered in, end to end from raw data to a ranked, explainable shortlist.</p>
+  </header>
+
+  <div class="pipeline">
+
+    <!-- STAGE 0 -->
+    <div class="stage" style="--stage-color: var(--c-data)">
+      <div class="stage-rail">
+        <div class="stage-num">00</div>
+        <div class="stage-line"></div>
+      </div>
+      <div class="stage-content">
+        <div class="stage-label">Data Ingestion</div>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-title">Candidate dataset</div>
+            <div class="card-desc">Profiles, skills, experience, education, activity logs — CSV/JSON</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Job descriptions</div>
+            <div class="card-desc">Raw JD text or structured JSON input</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 1 -->
+    <div class="stage" style="--stage-color: var(--c-nlp)">
+      <div class="stage-rail">
+        <div class="stage-num">01</div>
+        <div class="stage-line"></div>
+      </div>
+      <div class="stage-content">
+        <div class="stage-label">Preprocessing &amp; Deep Understanding</div>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-title">Profile cleaning &amp; normalization</div>
+            <div class="card-desc">Deduplication, skill taxonomy mapping ("JS" = "JavaScript")</div>
+          </div>
+          <div class="card">
+            <div class="card-title">LLM-based JD parser</div>
+            <div class="card-desc">Extracts required skills, nice-to-have, seniority, domain, intent into structured JSON</div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Hybrid keyword pass <span class="new-tag">new</span></div>
+            <div class="card-desc">BM25 keyword layer runs alongside parsing to catch exact must-have terms semantic models might miss</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage" style="--stage-color: var(--c-embed)">
+      <div class="stage-rail">
+        <div class="stage-num">02</div>
+        <div class="stage-line"></div>
+      </div>
+      <div class="stage-content">
+        <div class="stage-label">Embedding &amp; Semantic Index</div>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-title">Candidate vector embeddings</div>
+            <div class="card-desc">sentence-transformers encodes every profile into the same vector space</div>
+          </div>
+          <div class="card">
+            <div class="card-title">JD vector embedding</div>
+            <div class="card-desc">Job description encoded into the matching embedding space</div>
+          </div>
+          <div class="card">
+            <div class="card-title">FAISS / ChromaDB index</div>
+            <div class="card-desc">Approximate nearest-neighbor search — fast top-K retrieval at scale</div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Caching layer <span class="new-tag">new</span></div>
+            <div class="card-desc">Precomputed embeddings cached to disk — repeated queries skip recomputation entirely</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage" style="--stage-color: var(--c-score)">
+      <div class="stage-rail">
+        <div class="stage-num">03</div>
+        <div class="stage-line"></div>
+      </div>
+      <div class="stage-content">
+        <div class="stage-label">Multi-Signal Scoring Engine</div>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-title">Semantic score</div>
+            <div class="card-desc">Cosine similarity between JD and candidate vectors</div>
+            <div class="weight-bar"><div class="weight-fill" style="width:40%"></div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Profile score</div>
+            <div class="card-desc">Skills, experience, education match against parsed JD requirements</div>
+            <div class="weight-bar"><div class="weight-fill" style="width:35%"></div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Behavioral score</div>
+            <div class="card-desc">Recency of activity, platform engagement, career growth trajectory</div>
+            <div class="weight-bar"><div class="weight-fill" style="width:25%"></div></div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Dynamic weight tuning <span class="new-tag">new</span></div>
+            <div class="card-desc">Weights shift by role type — senior roles favor profile/experience, fresher roles favor behavioral activity</div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Cross-encoder re-ranking <span class="new-tag">new</span></div>
+            <div class="card-desc">Top-50 candidates re-scored with a precision cross-encoder for a final accuracy boost</div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Cold-start fallback <span class="new-tag">new</span></div>
+            <div class="card-desc">Candidates with sparse activity data get a fallback score so they aren't unfairly buried</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage" style="--stage-color: var(--c-rank)">
+      <div class="stage-rail">
+        <div class="stage-num">04</div>
+        <div class="stage-line"></div>
+      </div>
+      <div class="stage-content">
+        <div class="stage-label">Ranking &amp; Trust Layer</div>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-title">Ranking engine</div>
+            <div class="card-desc">Sorts by final weighted score, returns top-N shortlist</div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Explainability module <span class="new-tag">new</span></div>
+            <div class="card-desc">Plain-language reasoning per candidate: "91% semantic match · active 2 days ago · positive career growth"</div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Bias / fairness audit <span class="new-tag">new</span></div>
+            <div class="card-desc">Checks score distribution across groups to surface and reduce unintended bias</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage" style="--stage-color: var(--c-out)">
+      <div class="stage-rail">
+        <div class="stage-num">05</div>
+        <div class="stage-line"></div>
+      </div>
+      <div class="stage-content">
+        <div class="stage-label">Output Layer</div>
+        <div class="card-row">
+          <div class="card">
+            <div class="card-title">Ranked shortlist export</div>
+            <div class="card-desc">CSV / JSON in the predefined submission format — rank, score, match reason</div>
+          </div>
+          <div class="card">
+            <div class="card-title">GitHub repo + README</div>
+            <div class="card-desc">Organized code, clear documentation of methodology and architecture</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE 6 - BONUS -->
+    <div class="stage" style="--stage-color: var(--c-bonus)">
+      <div class="stage-rail">
+        <div class="stage-num">06</div>
+      </div>
+      <div class="stage-content">
+        <div class="stage-label">Bonus — Demo &amp; Presentation Layer</div>
+        <div class="card-row">
+          <div class="card new">
+            <div class="card-title">Streamlit live demo <span class="new-tag">new</span></div>
+            <div class="card-desc">Judges paste a JD and watch the ranked shortlist generate in real time</div>
+          </div>
+          <div class="card new">
+            <div class="card-title">Speed benchmark display <span class="new-tag">new</span></div>
+            <div class="card-desc">Quantified performance shown live — "10,000 candidates ranked in 2.3 seconds"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="stack-section">
+    <div class="stack-title">Complete Tech Stack</div>
+    <div class="stack-sub">Every tool mapped to the layer it powers</div>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-layer">Language</div>
+        <div class="stack-tool">Python 3.11+</div>
+        <div class="stack-why">Standard for ML/AI prototyping, broadest library support</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">LLM — JD parsing</div>
+        <div class="stack-tool">GPT-4o mini / Gemini 1.5 Flash / Groq Llama 3</div>
+        <div class="stack-why">Fast, cheap, accurate structured extraction from raw text</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Embeddings</div>
+        <div class="stack-tool">sentence-transformers (all-MiniLM-L6-v2 / bge-base-en)</div>
+        <div class="stack-why">Free, runs locally, fast — no per-call API cost</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Vector search</div>
+        <div class="stack-tool">FAISS (faiss-cpu) or ChromaDB</div>
+        <div class="stack-why">Lightweight, free, hackathon-friendly, scales to large profile sets</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Hybrid search</div>
+        <div class="stack-tool">rank_bm25</div>
+        <div class="stack-why">Catches exact must-have keyword matches semantic search can miss</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Re-ranking</div>
+        <div class="stack-tool">cross-encoder/ms-marco-MiniLM-L-6-v2</div>
+        <div class="stack-why">Improves precision on the top-K shortlist before final output</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Data processing</div>
+        <div class="stack-tool">pandas, numpy</div>
+        <div class="stack-why">Standard, reliable data wrangling and scoring math</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Backend API</div>
+        <div class="stack-tool">FastAPI</div>
+        <div class="stack-why">Clean, fast, easy to wire into a demo or external caller</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Demo UI</div>
+        <div class="stack-tool">Streamlit</div>
+        <div class="stack-why">Fastest path to an interactive, judge-friendly live demo</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Visualization</div>
+        <div class="stack-tool">matplotlib / plotly</div>
+        <div class="stack-why">Score distribution and bias-audit charts</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Output</div>
+        <div class="stack-tool">pandas.to_csv() / json</div>
+        <div class="stack-why">Predefined submission format, easy to validate</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-layer">Version control</div>
+        <div class="stack-tool">Git + GitHub</div>
+        <div class="stack-why">Required submission artifact, tracks methodology evolution</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:var(--c-data)"></span>Data</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--c-nlp)"></span>Understanding / NLP</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--c-embed)"></span>Embedding / Vector search</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--c-score)"></span>Scoring</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--c-rank)"></span>Ranking / Trust</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--c-out)"></span>Output</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--c-bonus)"></span>Bonus / Demo</div>
+    <div class="legend-item"><span class="legend-dot" style="border:1px dashed var(--c-new); background:transparent"></span>New / differentiator feature</div>
+  </div>
+
+  <footer>Intelligent Candidate Discovery — Track 01, Data &amp; AI Challenge</footer>
+
+</div>
+</body>
+</html>

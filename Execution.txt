@@ -1,0 +1,29 @@
+redrob-discovery/
+├── data/
+│   ├── candidates.jsonl
+│   ├── job_description.docx
+│   ├── sample_candidates.json
+│   └── sample_submission.csv
+├── precompute/
+│   ├── jd_parsed.json            # output of offline JD parsing
+│   └── embeddings.npy            # precomputed candidate embeddings
+│   └── candidate_ids.json        # ordered list matching embeddings.npy rows
+├── src/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── schema.py
+│   ├── jd_parser.py              # OFFLINE ONLY — LLM allowed here
+│   ├── feature_engineering.py
+│   ├── embedder.py
+│   ├── vector_store.py
+│   ├── scorer.py
+│   ├── reranker.py
+│   ├── explainer.py
+│   └── honeypot.py               # NEW — explicit honeypot detection
+├── outputs/
+│   └── submission.csv
+├── app.py                        # Streamlit demo
+├── precompute.py                 # Step 1 — run once offline (LLM + embeddings)
+├── rank.py                       # Step 2 — THE ranking script (no network, <5min)
+├── submission_metadata.yaml
+└── requirements.txt

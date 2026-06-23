@@ -1,0 +1,46 @@
+Stage 0 
+data contract first, always. Your original skipped this entirely. Before any ML runs, 
+every candidate record gets Pydantic-validated against the schema you have. Dates normalized,
+nulls flagged, consulting-only flag derived from career_history. This is the foundation 
+everything else depends on.
+
+
+Stage 1 
+the JD parser has a safety net. LLM extraction with a Pydantic output guard. If Gemini Flash 
+hallucinates or returns malformed JSON, spaCy NER fires as a deterministic fallback. The JD 
+you have is rich — it explicitly tells you to penalize keyword-stuffed profiles and reward 
+career narrative. The parser needs to extract disqualifiers too, not just requirements.
+
+
+Stage 2 
+structured representation, not raw JSON into embeddings. This is the biggest fix. You embed a 
+curated text narrative — headline + summary + role descriptions + top skills by usage duration. 
+Not the raw JSON dump. Separately, you extract a clean structured feature vector for profile 
+scoring. These are two different data products for two different scoring passes.
+
+
+Stage 3 — ChromaDB, not FAISS. The dataset has open_to_work_flag, notice_period_days, location,
+preferred_work_mode. You want to filter on these before ANN search, not after. ChromaDB supports 
+metadata pre-filtering natively. FAISS doesn't — you'd be doing wasteful post-filtering on a 
+pool that already has irrelevant candidates in it.
+
+
+Stage 4 
+three scores with meaning. Semantic (30–35%), Profile (35–50% depending on seniority — senior 
+roles shift weight here heavily), Availability (20%). The availability score is new and critical 
+for this specific JD — the dataset has candidates who look perfect on paper but haven't logged 
+in for months with a 10% recruiter response rate. They're functionally unavailable. The hard 
+disqualifiers also live here — Marketing Managers with AI skills don't make the list, regardless
+of score.
+
+
+Stage 5 
+cross-encoder as a separate precision gate. Top-50 candidates only. Input is (JD requirements 
+text, candidate embed text) as a pair — the cross-encoder sees them jointly, which catches 
+relevance the bi-encoder misses. Scores blend 60/40 with the weighted score.
+
+
+Stage 6 
+the reasoning string is engineered, not improvised. You log score components at Stage 4, pick 
+the top 2 contributors at Stage 6, and template them into the reasoning column. Exactly what 
+sample_submission.csv shows.

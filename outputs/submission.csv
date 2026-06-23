@@ -1,0 +1,101 @@
+candidate_id,rank,score,reasoning
+CAND_0077337,1,0.7812,Staff Machine Learning Engineer with 7.0 yrs; 13 AI/IR core skills; 83 product-company months; response rate 0.95; technical role fit; production ranking/retrieval evidence.
+CAND_0081846,2,0.7800,Lead AI Engineer with 6.7 yrs; 13 AI/IR core skills; 79 product-company months; response rate 0.73; technical role fit; production ranking/retrieval evidence.
+CAND_0055905,3,0.7714,Senior Machine Learning Engineer with 8.1 yrs; 9 AI/IR core skills; 96 product-company months; response rate 0.87; technical role fit; production ranking/retrieval evidence.
+CAND_0002025,4,0.7614,Senior AI Engineer with 5.9 yrs; 12 AI/IR core skills; 70 product-company months; response rate 0.80; technical role fit; production ranking/retrieval evidence.
+CAND_0018499,5,0.7612,Senior Machine Learning Engineer with 7.2 yrs; 10 AI/IR core skills; 86 product-company months; response rate 0.61; technical role fit; production ranking/retrieval evidence.
+CAND_0088025,6,0.7606,Staff Machine Learning Engineer with 8.6 yrs; 12 AI/IR core skills; 102 product-company months; response rate 0.83; technical role fit; production ranking/retrieval evidence.
+CAND_0046525,7,0.7599,Senior Machine Learning Engineer with 6.1 yrs; 10 AI/IR core skills; 73 product-company months; response rate 0.88; technical role fit; production ranking/retrieval evidence.
+CAND_0046064,8,0.7318,Senior NLP Engineer with 8.9 yrs; 7 AI/IR core skills; 106 product-company months; response rate 0.78; technical role fit; production ranking/retrieval evidence.
+CAND_0095528,9,0.7262,Senior Data Scientist with 5.3 yrs; 12 AI/IR core skills; 63 product-company months; response rate 0.55; technical role fit; production ranking/retrieval evidence.
+CAND_0070398,10,0.7248,Machine Learning Engineer with 7.2 yrs; 10 AI/IR core skills; 85 product-company months; response rate 0.60; technical role fit; production ranking/retrieval evidence.
+CAND_0071974,11,0.7217,Senior AI Engineer with 7.8 yrs; 10 AI/IR core skills; 92 product-company months; response rate 0.76; technical role fit; production ranking/retrieval evidence.
+CAND_0011687,12,0.7212,Senior NLP Engineer with 7.8 yrs; 11 AI/IR core skills; 92 product-company months; response rate 0.89; technical role fit; production ranking/retrieval evidence.
+CAND_0006567,13,0.7166,Senior AI Engineer with 7.9 yrs; 8 AI/IR core skills; 94 product-company months; response rate 0.79; technical role fit; production ranking/retrieval evidence.
+CAND_0065195,14,0.7143,Search Engineer with 5.1 yrs; 8 AI/IR core skills; 61 product-company months; response rate 0.80; technical role fit; production ranking/retrieval evidence.
+CAND_0024466,15,0.7136,Search Engineer with 5.2 yrs; 9 AI/IR core skills; 62 product-company months; response rate 0.47; technical role fit; production ranking/retrieval evidence.
+CAND_0010257,16,0.7117,Senior Data Scientist with 6.5 yrs; 10 AI/IR core skills; 77 product-company months; response rate 0.72; technical role fit; production ranking/retrieval evidence.
+CAND_0005260,17,0.7106,Senior NLP Engineer with 5.2 yrs; 12 AI/IR core skills; 61 product-company months; response rate 0.86; technical role fit; production ranking/retrieval evidence.
+CAND_0054123,18,0.7038,Applied ML Engineer with 4.7 yrs; 10 AI/IR core skills; 55 product-company months; response rate 0.87; technical role fit; production ranking/retrieval evidence.
+CAND_0066376,19,0.7037,Applied ML Engineer with 5.7 yrs; 10 AI/IR core skills; 67 product-company months; response rate 0.51; technical role fit; production ranking/retrieval evidence.
+CAND_0044222,20,0.7030,AI Engineer with 7.7 yrs; 11 AI/IR core skills; 92 product-company months; response rate 0.60; technical role fit; production ranking/retrieval evidence.
+CAND_0052328,21,0.7013,Recommendation Systems Engineer with 6.5 yrs; 7 AI/IR core skills; 77 product-company months; response rate 0.79; technical role fit; production ranking/retrieval evidence.
+CAND_0043860,22,0.7010,Junior ML Engineer with 6.1 yrs; 8 AI/IR core skills; 73 product-company months; response rate 0.81; technical role fit; production ranking/retrieval evidence.
+CAND_0079387,23,0.7003,AI Engineer with 6.9 yrs; 7 AI/IR core skills; 81 product-company months; response rate 0.81; technical role fit; production ranking/retrieval evidence.
+CAND_0008425,24,0.7001,Senior NLP Engineer with 7.8 yrs; 9 AI/IR core skills; 92 product-company months; response rate 0.66; technical role fit; production ranking/retrieval evidence.
+CAND_0050454,25,0.6986,AI Engineer with 6.8 yrs; 10 AI/IR core skills; 81 product-company months; response rate 0.77; technical role fit; production ranking/retrieval evidence.
+CAND_0041611,26,0.6980,Staff Machine Learning Engineer with 6.4 yrs; 12 AI/IR core skills; 75 product-company months; response rate 0.07; technical role fit; production ranking/retrieval evidence.
+CAND_0094759,27,0.6975,Lead AI Engineer with 8.6 yrs; 8 AI/IR core skills; 101 product-company months; response rate 0.11; technical role fit; production ranking/retrieval evidence.
+CAND_0006418,28,0.6974,Machine Learning Engineer with 5.7 yrs; 8 AI/IR core skills; 67 product-company months; response rate 0.92; technical role fit; production ranking/retrieval evidence.
+CAND_0037160,29,0.6969,Data Scientist with 6.0 yrs; 8 AI/IR core skills; 56 product-company months; response rate 0.74; technical role fit; production ranking/retrieval evidence.
+CAND_0061257,30,0.6968,Staff Machine Learning Engineer with 8.0 yrs; 7 AI/IR core skills; 95 product-company months; response rate 0.87; technical role fit; production ranking/retrieval evidence.
+CAND_0007411,31,0.6967,Senior Machine Learning Engineer with 8.0 yrs; 8 AI/IR core skills; 95 product-company months; response rate 0.12; technical role fit; production ranking/retrieval evidence.
+CAND_0093912,32,0.6963,Senior Data Scientist with 5.3 yrs; 6 AI/IR core skills; 62 product-company months; response rate 0.66; technical role fit; production ranking/retrieval evidence.
+CAND_0050876,33,0.6942,Applied ML Engineer with 6.0 yrs; 9 AI/IR core skills; 71 product-company months; response rate 0.67; technical role fit; production ranking/retrieval evidence.
+CAND_0096142,34,0.6935,Applied ML Engineer with 5.0 yrs; 7 AI/IR core skills; 60 product-company months; response rate 0.84; technical role fit; production ranking/retrieval evidence.
+CAND_0065878,35,0.6932,Senior Data Scientist with 7.8 yrs; 10 AI/IR core skills; 92 product-company months; response rate 0.48; technical role fit; production ranking/retrieval evidence.
+CAND_0005649,36,0.6928,Senior Data Scientist with 7.4 yrs; 9 AI/IR core skills; 88 product-company months; response rate 0.57; technical role fit; production ranking/retrieval evidence.
+CAND_0064326,37,0.6927,Search Engineer with 7.6 yrs; 8 AI/IR core skills; 91 product-company months; response rate 0.94; technical role fit; production ranking/retrieval evidence.
+CAND_0042506,38,0.6923,Search Engineer with 4.2 yrs; 12 AI/IR core skills; 50 product-company months; response rate 0.48; technical role fit; production ranking/retrieval evidence.
+CAND_0010603,39,0.6922,ML Engineer with 5.3 yrs; 8 AI/IR core skills; 63 product-company months; response rate 0.94; technical role fit; production ranking/retrieval evidence.
+CAND_0068811,40,0.6916,Applied ML Engineer with 8.0 yrs; 8 AI/IR core skills; 95 product-company months; response rate 0.42; technical role fit; production ranking/retrieval evidence.
+CAND_0028793,41,0.6911,Search Engineer with 7.2 yrs; 7 AI/IR core skills; 85 product-company months; response rate 0.57; technical role fit; production ranking/retrieval evidence.
+CAND_0030348,42,0.6882,Machine Learning Engineer with 4.5 yrs; 9 AI/IR core skills; 53 product-company months; response rate 0.54; technical role fit; production ranking/retrieval evidence.
+CAND_0049896,43,0.6877,Search Engineer with 7.3 yrs; 7 AI/IR core skills; 87 product-company months; response rate 0.43; technical role fit; production ranking/retrieval evidence.
+CAND_0045250,44,0.6866,Applied ML Engineer with 6.6 yrs; 10 AI/IR core skills; 78 product-company months; response rate 0.74; technical role fit; production ranking/retrieval evidence.
+CAND_0037944,45,0.6862,Senior Data Scientist with 4.9 yrs; 10 AI/IR core skills; 58 product-company months; response rate 0.42; technical role fit; production ranking/retrieval evidence.
+CAND_0052682,46,0.6860,NLP Engineer with 6.6 yrs; 9 AI/IR core skills; 78 product-company months; response rate 0.88; technical role fit; production ranking/retrieval evidence.
+CAND_0067866,47,0.6858,Senior Software Engineer (ML) with 6.4 yrs; 7 AI/IR core skills; 38 product-company months; response rate 0.79; technical role fit; production ranking/retrieval evidence.
+CAND_0051004,48,0.6855,Senior Data Scientist with 4.7 yrs; 11 AI/IR core skills; 56 product-company months; response rate 0.41; technical role fit; production ranking/retrieval evidence.
+CAND_0015967,49,0.6850,Senior Software Engineer (ML) with 5.4 yrs; 8 AI/IR core skills; 64 product-company months; response rate 0.45; technical role fit; production ranking/retrieval evidence.
+CAND_0081852,50,0.6838,Senior Data Scientist with 5.9 yrs; 8 AI/IR core skills; 70 product-company months; response rate 0.44; technical role fit; production ranking/retrieval evidence.
+CAND_0024620,51,0.6833,AI Engineer with 5.9 yrs; 9 AI/IR core skills; 70 product-company months; response rate 0.41; technical role fit; production ranking/retrieval evidence.
+CAND_0076251,52,0.6832,Search Engineer with 7.6 yrs; 7 AI/IR core skills; 91 product-company months; response rate 0.51; technical role fit; production ranking/retrieval evidence.
+CAND_0033179,53,0.6831,AI Research Engineer with 6.9 yrs; 7 AI/IR core skills; 44 product-company months; response rate 0.84; technical role fit; production ranking/retrieval evidence.
+CAND_0037566,54,0.6829,Machine Learning Engineer with 6.9 yrs; 11 AI/IR core skills; 82 product-company months; response rate 0.50; technical role fit; production ranking/retrieval evidence.
+CAND_0049538,55,0.6823,Applied ML Engineer with 5.8 yrs; 13 AI/IR core skills; 68 product-company months; response rate 0.72; technical role fit; production ranking/retrieval evidence.
+CAND_0005538,56,0.6817,Senior AI Engineer with 5.9 yrs; 10 AI/IR core skills; 69 product-company months; response rate 0.81; technical role fit; production ranking/retrieval evidence.
+CAND_0074225,57,0.6816,Machine Learning Engineer with 4.3 yrs; 10 AI/IR core skills; 51 product-company months; response rate 0.91; technical role fit; production ranking/retrieval evidence.
+CAND_0090300,58,0.6805,AI Research Engineer with 5.3 yrs; 8 AI/IR core skills; 48 product-company months; response rate 0.94; technical role fit; production ranking/retrieval evidence.
+CAND_0055992,59,0.6804,AI Engineer with 16.9 yrs; 11 AI/IR core skills; 80 product-company months; response rate 0.72; technical role fit; production ranking/retrieval evidence.
+CAND_0099806,60,0.6800,AI Engineer with 4.6 yrs; 9 AI/IR core skills; 54 product-company months; response rate 0.76; technical role fit; production ranking/retrieval evidence.
+CAND_0044883,61,0.6798,AI Engineer with 6.3 yrs; 7 AI/IR core skills; 74 product-company months; response rate 0.84; technical role fit; production ranking/retrieval evidence.
+CAND_0086022,62,0.6793,Senior Applied Scientist with 5.3 yrs; 15 AI/IR core skills; 63 product-company months; response rate 0.55; production ranking/retrieval evidence; product-company depth.
+CAND_0030031,63,0.6787,AI Engineer with 5.7 yrs; 9 AI/IR core skills; 67 product-company months; response rate 0.94; technical role fit; production ranking/retrieval evidence.
+CAND_0083307,64,0.6786,Search Engineer with 7.8 yrs; 10 AI/IR core skills; 92 product-company months; response rate 0.70; technical role fit; production ranking/retrieval evidence.
+CAND_0064904,65,0.6783,AI Engineer with 4.9 yrs; 10 AI/IR core skills; 58 product-company months; response rate 0.78; technical role fit; production ranking/retrieval evidence.
+CAND_0007596,66,0.6782,Junior ML Engineer with 4.4 yrs; 8 AI/IR core skills; 52 product-company months; response rate 0.86; technical role fit; production ranking/retrieval evidence.
+CAND_0035879,67,0.6781,AI Research Engineer with 4.5 yrs; 8 AI/IR core skills; 54 product-company months; response rate 0.82; technical role fit; production ranking/retrieval evidence.
+CAND_0058688,68,0.6777,AI Engineer with 6.7 yrs; 8 AI/IR core skills; 80 product-company months; response rate 0.74; technical role fit; production ranking/retrieval evidence.
+CAND_0091909,69,0.6776,Machine Learning Engineer with 6.9 yrs; 8 AI/IR core skills; 82 product-company months; response rate 0.65; technical role fit; production ranking/retrieval evidence.
+CAND_0042029,70,0.6769,Senior Data Scientist with 6.5 yrs; 10 AI/IR core skills; 78 product-company months; response rate 0.67; technical role fit; production ranking/retrieval evidence.
+CAND_0039754,71,0.6766,Senior Applied Scientist with 16.2 yrs; 14 AI/IR core skills; 98 product-company months; response rate 0.81; production ranking/retrieval evidence; product-company depth.
+CAND_0012957,72,0.6765,Search Engineer with 4.9 yrs; 10 AI/IR core skills; 58 product-company months; response rate 0.67; technical role fit; production ranking/retrieval evidence.
+CAND_0009691,73,0.6764,Applied ML Engineer with 6.2 yrs; 10 AI/IR core skills; 73 product-company months; response rate 0.64; technical role fit; production ranking/retrieval evidence.
+CAND_0078002,74,0.6755,Machine Learning Engineer with 6.3 yrs; 10 AI/IR core skills; 74 product-company months; response rate 0.86; technical role fit; production ranking/retrieval evidence.
+CAND_0093193,75,0.6747,Senior Machine Learning Engineer with 7.9 yrs; 11 AI/IR core skills; 94 product-company months; response rate 0.61; technical role fit; production ranking/retrieval evidence.
+CAND_0016163,76,0.6746,Applied ML Engineer with 6.7 yrs; 10 AI/IR core skills; 79 product-company months; response rate 0.72; technical role fit; production ranking/retrieval evidence.
+CAND_0004402,77,0.6736,AI Research Engineer with 6.0 yrs; 5 AI/IR core skills; 71 product-company months; response rate 0.83; technical role fit; production ranking/retrieval evidence.
+CAND_0060072,78,0.6735,Staff Machine Learning Engineer with 5.7 yrs; 11 AI/IR core skills; 68 product-company months; response rate 0.10; technical role fit; production ranking/retrieval evidence.
+CAND_0040178,79,0.6731,ML Engineer with 5.0 yrs; 6 AI/IR core skills; 59 product-company months; response rate 0.55; technical role fit; production ranking/retrieval evidence.
+CAND_0030784,80,0.6726,Data Scientist with 4.4 yrs; 7 AI/IR core skills; 52 product-company months; response rate 0.90; technical role fit; production ranking/retrieval evidence.
+CAND_0092706,81,0.6719,AI Research Engineer with 5.8 yrs; 3 AI/IR core skills; 69 product-company months; response rate 0.78; technical role fit; production ranking/retrieval evidence.
+CAND_0061339,82,0.6718,Search Engineer with 4.2 yrs; 9 AI/IR core skills; 49 product-company months; response rate 0.90; technical role fit; production ranking/retrieval evidence.
+CAND_0051292,83,0.6716,Applied ML Engineer with 5.2 yrs; 9 AI/IR core skills; 60 product-company months; response rate 0.52; technical role fit; production ranking/retrieval evidence.
+CAND_0070525,84,0.6710,Senior Software Engineer (ML) with 5.4 yrs; 6 AI/IR core skills; 64 product-company months; response rate 0.93; technical role fit; production ranking/retrieval evidence.
+CAND_0040887,85,0.6704,Machine Learning Engineer with 4.7 yrs; 8 AI/IR core skills; 55 product-company months; response rate 0.84; technical role fit; production ranking/retrieval evidence.
+CAND_0072660,86,0.6699,Machine Learning Engineer with 7.1 yrs; 11 AI/IR core skills; 84 product-company months; response rate 0.53; technical role fit; production ranking/retrieval evidence.
+CAND_0079064,87,0.6698,Senior Data Scientist with 5.2 yrs; 8 AI/IR core skills; 62 product-company months; response rate 0.91; technical role fit; production ranking/retrieval evidence.
+CAND_0069905,88,0.6696,Applied ML Engineer with 6.6 yrs; 7 AI/IR core skills; 78 product-company months; response rate 0.78; technical role fit; production ranking/retrieval evidence.
+CAND_0041610,89,0.6681,Recommendation Systems Engineer with 6.7 yrs; 10 AI/IR core skills; 79 product-company months; response rate 0.52; technical role fit; production ranking/retrieval evidence.
+CAND_0028422,90,0.6664,Junior ML Engineer with 5.5 yrs; 7 AI/IR core skills; 65 product-company months; response rate 0.76; technical role fit; production ranking/retrieval evidence.
+CAND_0079284,91,0.6663,Machine Learning Engineer with 4.9 yrs; 9 AI/IR core skills; 58 product-company months; response rate 0.79; technical role fit; production ranking/retrieval evidence.
+CAND_0064888,92,0.6659,ML Engineer with 5.8 yrs; 7 AI/IR core skills; 49 product-company months; response rate 0.92; technical role fit; production ranking/retrieval evidence.
+CAND_0093547,93,0.6655,Senior Machine Learning Engineer with 2.9 yrs; 11 AI/IR core skills; 74 product-company months; response rate 0.75; technical role fit; production ranking/retrieval evidence.
+CAND_0098846,94,0.6652,AI Engineer with 7.6 yrs; 8 AI/IR core skills; 90 product-company months; response rate 0.62; technical role fit; production ranking/retrieval evidence.
+CAND_0089552,95,0.6650,Machine Learning Engineer with 6.0 yrs; 9 AI/IR core skills; 71 product-company months; response rate 0.49; technical role fit; production ranking/retrieval evidence.
+CAND_0092255,96,0.6649,ML Engineer with 5.2 yrs; 9 AI/IR core skills; 48 product-company months; response rate 0.38; technical role fit; production ranking/retrieval evidence.
+CAND_0018549,97,0.6647,Recommendation Systems Engineer with 6.8 yrs; 7 AI/IR core skills; 81 product-company months; response rate 0.73; technical role fit; production ranking/retrieval evidence.
+CAND_0011432,98,0.6641,Senior Data Scientist with 7.6 yrs; 9 AI/IR core skills; 90 product-company months; response rate 0.67; technical role fit; production ranking/retrieval evidence.
+CAND_0075249,99,0.6640,Applied ML Engineer with 6.2 yrs; 5 AI/IR core skills; 74 product-company months; response rate 0.82; technical role fit; production ranking/retrieval evidence.
+CAND_0074735,100,0.6639,Applied ML Engineer with 5.5 yrs; 10 AI/IR core skills; 65 product-company months; response rate 0.77; technical role fit; production ranking/retrieval evidence.
